@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "solution journal",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -R mocha-multi --reporter-options nyan=-,json=.results.json"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,16 @@
   "bugs": {
     "url": "https://github.com/Mathwell/project_euler/issues"
   },
-  "homepage": "https://github.com/Mathwell/project_euler#readme"
+  "homepage": "https://github.com/Mathwell/project_euler#readme",
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "expect": "^1.20.2",
+    "jsdom": "^9.0.0",
+    "mocha": "^2.4.5",
+    "mocha-multi": "^0.9.0"
+  },
+  "dependencies": {
+    "sinon": "^2.0.0"
+  }
 }
