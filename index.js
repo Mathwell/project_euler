@@ -51,6 +51,17 @@ function printFibonacci(n){
     return newS
   }
 
+function reverseWords(s){
+  let arr=s.split(" ")
+  let newArr=[]
+
+  for (let i=arr.length-1; i>=0; i--){
+    newArr.push(arr[i])
+  }
+
+  return newArr.join(" ")
+}
+
 //console.log(printFibonacci(7))
 //console.log("**********",fib)
-console.log(reverseString("hello"))
+console.log(reverseWords("hello wold"))
