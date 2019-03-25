@@ -64,4 +64,48 @@ function reverseWords(s){
 
 //console.log(printFibonacci(7))
 //console.log("**********",fib)
-console.log(reverseWords("hello wold"))
+
+function allCombinations(arr){
+
+  if (arr.lenght===1){
+    return arr[0]
+  } else {
+    let result=[]
+    var allCasesOfRest = allCombinations(arr.slice(1));  // recur with the rest of array
+    for (let i=0; i<allCasesOfRest.length; i++) {
+      for (let j = 0; j < arr[0].length; j++) {
+        result.push(arr[0][j] + allCasesOfRest[i]);
+      }
+    }
+
+    return result;
+  }
+  }
+
+  function combinations(str) {
+    var fn = function(active, rest, a) {
+        if (!active && !rest)
+            return;
+        if (!rest) {
+            a.push(active);
+        } else {
+            fn(active + rest[0], rest.slice(1), a);
+            fn(active, rest.slice(1), a);
+        }
+        return a;
+    }
+    return fn("", str, []);
+}
+
+
+
+
+function mostCalories(dollarAmount,items){
+  let sortedItems=items.sort(function(a,b){return a.calories-b.calories})
+  let dollarLeft=dollarAmount
+  while (dollarLeft>0){
+
+  }
+}
+//console.log(allCombinations([['a','b'],['c','d'],['e']]))
+console.log(combinations("abcd"))
