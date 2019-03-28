@@ -98,6 +98,23 @@ function allCombinations(arr){
 }
 
 
+function recursiveKnapSack(wallet, menuItems) {
+     const n = menu_items.length;
+     if (wallet <= 0)
+       return 0;
+
+     let maxCal = 0;
+     for (int i = 0; i < n; i++) {
+        if (menuItems[i].price <= wallet ) {
+           let newCal = menuItems[i].callories + recursiveKnapSack(wallet - menuItems[i].price, menuItems); //solution for when we spent money on the item i.
+           maxCal = Math.max(maxCal, newCal);
+         }
+     }
+     return maxCal;
+   }
+
+
+
 
 
 function mostCalories(dollarAmount,items){
@@ -108,4 +125,5 @@ function mostCalories(dollarAmount,items){
   }
 }
 //console.log(allCombinations([['a','b'],['c','d'],['e']]))
-console.log(combinations("abcd"))
+//console.log(combinations("abcd"))
+console.log(recursiveKnapSack(5,[{price: 2, calories: 10},{ price:1, calories:25}]))
