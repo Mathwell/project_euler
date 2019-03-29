@@ -118,6 +118,25 @@ function recursiveKnapSack(wallet, menuItems) {
    }
 
 
+function  nonRecursiveKnapSack( wallet, menuItems) {
+         let n = menuItems.length;
+         let answers  = []; //answer[i] is solution for when wallet has i cents, initially filled with 0
+         for (let i=0; i<n; i++){
+           answers.push(0)
+         }
+         for (let currMoney = 1; currMoney <=wallet; currMoney++  ) {
+            let maxCal = answers[currMoney-1];
+            for (let i = 0; i < n; i++) {
+               if (menuItems[i].price <= wallet) {
+                 let prevCal = answers[currMoney - menuItems[i].price];
+                  let newCal = menuItems[i].calories + prevCal;
+                   maxCal= (maxCal>newCal) ? MaxCal : newCal
+                 }
+            }
+            answers[currMoney] = maxCal;
+         }
+         return answers[wallet];
+      }
 
 
 
@@ -130,4 +149,5 @@ function mostCalories(dollarAmount,items){
 }
 //console.log(allCombinations([['a','b'],['c','d'],['e']]))
 //console.log(combinations("abcd"))
-console.log(recursiveKnapSack(15,[{price: 3, calories: 5},{ price:2, calories:4}, {price: 1, calories: 2}]))
+//console.log(recursiveKnapSack(15,[{price: 3, calories: 5},{ price:2, calories:4}, {price: 1, calories: 2}]))
+console.log(nonRecursiveKnapSack(15,[{price: 3, calories: 5},{ price:2, calories:4}, {price: 1, calories: 2}]))
