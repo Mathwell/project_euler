@@ -147,11 +147,6 @@ function mostCalories(dollarAmount,items){
 
   }
 }
-//console.log(allCombinations([['a','b'],['c','d'],['e']]))
-//console.log(combinations("abcd"))
-//console.log(recursiveKnapSack(15,[{price: 3, calories: 5},{ price:2, calories:4}, {price: 1, calories: 2}]))
-//console.log(nonRecursiveKnapSack(15,[{price: 3, calories: 5},{ price:2, calories:4}, {price: 1, calories: 2}]))
-
 /*
 Exercise Goal:
     - The goal of this exercise is to show us how you apply software engineering
@@ -249,10 +244,12 @@ const average = arr => arr.reduce((sum, element) => sum + element, 0) / arr.leng
 class LeaderBoard {
 
   constructor(){
-      this.players={};
+      this.players={}; //all players object in a format {{id1: [score1,score2,...]},{id2: [score1,score2,...]}}
   }
 
   add_score = (player_id, score) => {
+   if (score<0 || score>100) {return "invalid score"}
+   if (!Number.isInteger(player_id) || player_id<0) {return "invalid id"}
    if (this.players[player_id]){
       this.players[player_id].push(score)
     } else {
@@ -263,6 +260,7 @@ class LeaderBoard {
   };
 
   top = (num_players) => {
+    if (num_players<0 || !Number.isInteger(num_players)) { return "invalid number"}
     let topList=Object.keys(this.players).map(key=>
       [Number(key), average(this.players[key])]).sort((a,b)=>b[1]-a[1]).map(element=>element[0]).slice(0,num_players)
 
@@ -271,7 +269,12 @@ class LeaderBoard {
   };
 
   reset= (player_id) => {
+    if (this.players[player_id]) {
       this.players[player_id]=[0]
+    } else{
+     return "invalid id"
+  }
+
   };
 }
 
@@ -304,3 +307,4 @@ console.log(array_equals(leader_board.top(2), [3, 2]))
 leader_board.reset(3)
 console.log('After reset top 3 [' + leader_board.top(3) + '] should equal [2, 1, 3]')
 console.log(array_equals(leader_board.top(3), [2, 1, 3]))
+console.log(leader_board.top("a"))
