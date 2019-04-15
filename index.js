@@ -149,12 +149,21 @@ function mostCalories(dollarAmount,items){
 }
 
 function  latticePath(num){
-  let count=1, sum=2
-  for(let i=num; i>0; i--){
-    sum=sum+i*count
-    count++
+  let count=2, sum=2*num
+  for(let i=2; i<=num; i++){
+    sum=sum+i*(num-1)
   }
   return sum
 }
 
-console.log(latticePath(20))
+function twoTothouthand(){
+  let power=Math.pow(2,1000)
+  let sum=0
+  while (power>0){
+    sum=sum+power%10
+    power=Math.floor(power/10)
+    console.log(sum+"  "+power)
+  }
+  return sum
+}
+console.log(twoTothouthand())
