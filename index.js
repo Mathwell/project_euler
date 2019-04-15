@@ -182,4 +182,25 @@ function sumFactorial(num){
   return sum
 }
 
-console.log(sumFactorial(10))
+function sumOfFactors(num){
+   let sqrtOfNumber = Math.sqrt(num);
+   let sum = 1;
+
+    //If the number is a perfect square
+    //Count the squareroot once in the sum of factors
+    if (num == sqrtOfNumber * sqrtOfNumber) {
+        sum += sqrtOfNumber;
+        sqrtOfNumber--;
+    }
+
+    for (let i = 2; i <= sqrtOfNumber; i++) {
+        if (num % i == 0) {
+            sum = sum + i + Math.floor(num / i);
+        }
+    }
+
+    return sum;
+}
+
+
+console.log(sumOfFactors(220))
