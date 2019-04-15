@@ -167,48 +167,19 @@ function twoTothouthand(){
   return sum
 }
 
-const getTopsyTurvyTriangleArray = (str) =>
-  // Split the string on every new line.
-  str.split('\n')
-    // Remove empty rows.
-    .filter(row => parseInt(row))
-    // Split the row every row on every space
-    // and convert it to an int.
-    .map(row => row.split(' ').map(str => parseInt(str, 10)))
-    // Reverse the array, since we want to process our
-    // triangle from the bottom up.
-    .reverse();
 
-const getLongestPathLength = (triangle, legs = [0]) => {
 
-  // Sum the top of the triangle with its longest leg
-  // if we have reaced the top (now pointing downward)
-  // of our upside-down triangle.
-  if(triangle[0].length === 1){
-    return triangle[0][0] + legs[0];
+function sumFactorial(num){
+  let factorial=1
+  let sum=0
+  for(let i=num; i>0; i-- ){
+    factorial=factorial*i
   }
-
-  // Get the foundation of our upside down triangle.
-  const [foundation, ...top] = triangle
-
-  // Sum the current triangle foundation with its legs.
-  // There will be no legs the first time around.
-  const sums = [foundation.map((n, i) => n + (legs[i] || 0))]
-
-  // Get the longest legs. We only need all but one,
-  // since the next level is one less in length.
-  const longestLegs = sums[0].map((n, index, row) =>
-    row[index + 1] && row[index + 1] > n ? row[index + 1] : n,
-  ).splice(0, sums[0].length - 1)
-
-  return getLongestPathLength(top, longestLegs);
-
+  while(factorial>0){
+    sum=sum+factorial%10
+    factorial=Math.floor(factorial/10)
+  }
+  return sum
 }
 
-// Convert triangle string to an array.
-const triangle = getTopsyTurvyTriangleArray(str);
-
-// Traverse the triangle bottom up and get the longest path.
-const length = getLongestPathLength(triangle);
-
-console.log(twoTothouthand())
+console.log(sumFactorial(10))
